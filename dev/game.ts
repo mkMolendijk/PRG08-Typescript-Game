@@ -2,7 +2,7 @@ class Game {
     // Game instance
     private static gameInstance: Game;
 
-    // Get Instance of game or create one (SingleTon)
+    // Get Instance of game or create one (Singleton)
     public static getInstance() {
         if (!Game.gameInstance) {
             Game.gameInstance = new Game();
