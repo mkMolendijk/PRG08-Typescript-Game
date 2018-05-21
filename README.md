@@ -3,7 +3,7 @@
 ## Class diagram
 
 ## Pull requests
-Week 4:
+Week 4: [Pull request](https://github.com/ClikeX/typescript_game/pull/2)
 
 Week 6: 
 ## Singleton
