@@ -14,8 +14,8 @@ abstract class GameObject {
         parent.appendChild(this.div);
 
         // Set position
-        this.x = x;
-        this.y = y;
+        this._x = x;
+        this._y = y;
 
         // Set sizes
         this.width = width;
@@ -32,19 +32,19 @@ abstract class GameObject {
     }
 
     // Getters and setters
-    get x(): number {
-        return this.x;
+    getX(): number {
+        return this._x;
     }
 
-    set x(xPos: number) {
+    setX(xPos: number) {
         this._x = xPos;
     }
 
-    get y(): number {
+    getY(): number {
         return this._y;
     }
 
-    set y(yPos: number) {
+    setY(yPos: number) {
         this._y = yPos;
     }
 
