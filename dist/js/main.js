@@ -24,10 +24,10 @@ var GameObject = (function () {
     function GameObject(element, parent, x, y, height, width) {
         this.div = document.createElement(element);
         parent.appendChild(this.div);
-        this.setX(x);
-        this.setY(y);
-        this.setWidth(width);
-        this.setHeight(height);
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
     GameObject.prototype.move = function () {
         this.draw();
@@ -35,30 +35,46 @@ var GameObject = (function () {
     GameObject.prototype.draw = function () {
         this.div.style.transform = "translate(" + this.getX() + "px," + this.getY() + "px)";
     };
-    GameObject.prototype.getX = function () {
-        return this.x;
-    };
-    GameObject.prototype.setX = function (xPos) {
-        this.x = xPos;
-    };
-    GameObject.prototype.getY = function () {
-        return this.y;
-    };
-    GameObject.prototype.setY = function (yPos) {
-        this.y = yPos;
-    };
-    GameObject.prototype.getHeight = function () {
-        return this.height;
-    };
-    GameObject.prototype.setHeight = function (height) {
-        this.height = height;
-    };
-    GameObject.prototype.getWidth = function () {
-        return this.width;
-    };
-    GameObject.prototype.setWidth = function (width) {
-        this.width = width;
-    };
+    Object.defineProperty(GameObject.prototype, "x", {
+        get: function () {
+            return this.x;
+        },
+        set: function (xPos) {
+            this._x = xPos;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GameObject.prototype, "y", {
+        get: function () {
+            return this._y;
+        },
+        set: function (yPos) {
+            this._y = yPos;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GameObject.prototype, "height", {
+        get: function () {
+            return this._height;
+        },
+        set: function (height) {
+            this._height = height;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GameObject.prototype, "width", {
+        get: function () {
+            return this._width;
+        },
+        set: function (width) {
+            this._width = width;
+        },
+        enumerable: true,
+        configurable: true
+    });
     GameObject.prototype.removeDiv = function () {
         this.div.remove();
     };
