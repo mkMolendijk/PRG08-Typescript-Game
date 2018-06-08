@@ -5,7 +5,7 @@
 ## Pull requests
 Week 4: [Pull request](https://github.com/ClikeX/typescript_game/pull/2)
 
-Week 6: 
+Week 6: [Peer review](https://github.com/0909758/PRG08_Bobs_Nightmare/issues/6)
 ## Singleton
 The Singleton pattern is applied at the game instance:
 
