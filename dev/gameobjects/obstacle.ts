@@ -38,8 +38,6 @@ class Obstacle extends GameObject implements Observer {
     }
 
     public notify(): void {
-        this.div.classList.remove("toad");
-        this.div.classList.add("toad_laugh");
         this.setSpeed(0);
     }
 
