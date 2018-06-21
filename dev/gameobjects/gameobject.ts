@@ -1,13 +1,13 @@
 abstract class GameObject {
 
     // Props
-    protected div: HTMLElement;
+    protected div!: HTMLElement;
     protected _x!: number;
     protected _y!: number;
     protected _width!: number;
     protected _height!: number;
 
-    constructor(element: string, parent: HTMLElement, x: number, y: number, height: number, width: number) {
+    protected constructor(element: string, parent: HTMLElement, x: number, y: number, height: number, width: number) {
 
         // Create element and append it to parent
         this.div = document.createElement(element);
@@ -18,8 +18,8 @@ abstract class GameObject {
         this._y = y;
 
         // Set sizes
-        this.width = width;
-        this.height = height;
+        this._height = height;
+        this._width = width;
     }
 
     public move(): void {
@@ -32,35 +32,35 @@ abstract class GameObject {
     }
 
     // Getters and setters
-    getX(): number {
+    public getX(): number {
         return this._x;
     }
 
-    setX(xPos: number) {
+    public setX(xPos: number) {
         this._x = xPos;
     }
 
-    getY(): number {
+    public getY(): number {
         return this._y;
     }
 
-    setY(yPos: number) {
+    public setY(yPos: number) {
         this._y = yPos;
     }
 
-    get height(): number {
+    public getHeight(): number {
         return this._height;
     }
 
-    set height(height: number) {
+    public setHeight(height: number) {
         this._height = height;
     }
 
-    get width(): number {
+    public getWidth(): number {
         return this._width;
     }
 
-    set width(width: number) {
+    public setWidth(width: number) {
         this._width = width;
     }
 
@@ -68,5 +68,4 @@ abstract class GameObject {
     public removeDiv(): void {
         this.div.remove();
     }
-
 }

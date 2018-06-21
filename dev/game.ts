@@ -1,8 +1,13 @@
 class Game {
-    // Game instance
     private static gameInstance: Game;
 
-    // Get Instance of game or create one (Singleton)
+    private container: any;
+    private player: Player;
+    private obstacles: Array<Obstacle>;
+
+    // Properties
+    private gameOver: boolean = false;
+
     public static getInstance() {
         if (!Game.gameInstance) {
             Game.gameInstance = new Game();
@@ -10,20 +15,83 @@ class Game {
         return Game.gameInstance;
     }
 
+    // Game instance
     private constructor() {
-        // Container div for the game
-        let container = document.getElementById("container");
+        this.container = document.querySelector("#container");
 
-        // GameLoop function
+        this.player = new Player(this.container);
+        this.obstacles = new Array();
+
+        this.player.score = 0;
+
+        // Create obstacles array.
+        for (let i = 0; i < 3; i++) {
+            // Create Obstacle and push it to the array
+            let obstacle = new Obstacle(this.container, this.player);
+            this.obstacles.push(obstacle);
+
+            // Subscribe to player
+            this.player.subscribe(obstacle);
+        }
+
+        // Loop gameLoop function
         requestAnimationFrame(() => this.gameLoop());
     }
 
     private gameLoop(): void {
+        this.player.move();
+
+        // Check if game is over.
+        if (!this.gameOver) {
+            // For every obstacle. Check the collision
+            for (let obstacle of this.obstacles) {
+                if (Utils.Game.checkCollision(this.player, obstacle)) {
+                    this.endGame();
+                } else {
+                    // If there is no collision just move all obstacles and add score to player
+                    obstacle.move();
+                    this.player.score = this.player.score + 1;
+
+                    // Display Score
+                    let scoreText: string = "Score: " + this.player.score;
+                    let board = document.getElementsByTagName("score")[0];
+                    board.innerHTML = scoreText;
+                }
+            }
+        } else {
+            let start = document.createElement("start");
+            let scoreText: string = "Final Score: " + this.player.score;
+            start.innerText = scoreText;
+            document.body.appendChild(start);
+
+            // setTimeout(function () {
+            //     this.container.remove();
+            // }, 2000);
+        }
         requestAnimationFrame(() => this.gameLoop());
+    }
+
+    private endGame(): void {
+        this.gameOver = true;
+    }
+
+    public getGameStatus(): boolean {
+        return this.gameOver;
     }
 }
 
-// load game
 window.addEventListener("load", function () {
-    let game = Game.getInstance();
+
+    let startText: string = "Highway Racer";
+    let board = document.getElementsByTagName("score")[0];
+    board.innerHTML = startText;
+
+    let start = document.createElement("start");
+    start.innerText = "Start Game";
+    document.body.appendChild(start);
+
+    start.addEventListener("click", function () {
+        start.remove();
+        Game.getInstance();
+    });
 });

@@ -1,0 +1,97 @@
+/* main Tags */
+body {
+    background-color: #666;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+body * {
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+container {
+    height: 600px;
+    left: 50%;
+    overflow: hidden;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+}
+
+score {
+    color: white;
+    font-size: 42px;
+    padding: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0 black;
+    width: 100%;
+    z-index: 1;
+}
+
+start {
+    color: white;
+    font-size: 42px;
+    padding-top: 300px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 2px 2px 0 black;
+    width: 100%;
+    z-index: 1;
+}
+
+road {
+    animation: scrollingBg 8s linear infinite;
+    background-image: url(../images/road.png);
+    background-repeat: repeat-x;
+    height: 600px;
+    width: 2000px;
+}
+
+player {
+    height: 100px;
+    width: 201px;
+}
+
+car {
+    height: 100px;
+    width: 201px;
+}
+
+obstacle {
+    height: 100px;
+    width: 201px;
+}
+
+/* Classes */
+.driver {
+    background-image: url(../images/player-car.png);
+}
+
+.blue-driver {
+    background-image: url(../images/blue-car.png);
+}
+
+.green-driver {
+    background-image: url(../images/green-car.png);
+}
+
+.yellow-driver {
+    background-image: url(../images/yellow-car.png);
+}
+
+/* Animation */
+@keyframes scrollingBg {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    100% {
+        transform: translate(-1000px, 0px);
+    }
+}
