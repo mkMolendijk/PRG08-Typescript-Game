@@ -28,7 +28,7 @@ abstract class GameObject {
 
     // Draw
     public draw(): void {
-        this.div.style.transform = "translate(" + this.getX() + "px," + this.getY() + "px)";
+        this.div.style.transform = 'translate(' + this.getX() + 'px,' + this.getY() + 'px)';
     }
 
     // Getters and setters

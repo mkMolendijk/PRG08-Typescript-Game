@@ -2,7 +2,6 @@
 ///<reference path="../observers/observable.ts"/>
 
 class Player extends GameObject implements Observable {
-    private car: Car;
 
     // Properties
     public score!: number;
@@ -10,13 +9,12 @@ class Player extends GameObject implements Observable {
     public behavior!: Behavior;
 
     constructor(parent: HTMLElement) {
-        super("player", parent, 50, 250, 201, 100);
-        this.car = new Car(this.div, 100, 250, 201, 100);
+        super('player', parent, 50, 250, 100, 201);
 
         this.setPlayer();
 
         // Initialize Array
-        this.observers = new Array();
+        this.observers = Array();
 
         // Set default behavior Driving
         this.behavior = new Driving(this);

@@ -17,9 +17,9 @@ class Driving implements Behavior {
         this.player = p;
 
         // Listen to keyboard input
-        window.addEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e));
+        window.addEventListener('keydown', (e: KeyboardEvent) => this.onKeyDown(e));
         // When you release key, It sets moveSpeed to 0
-        window.addEventListener("keyup", () => this.onKeyUp());
+        window.addEventListener('keyup', () => this.onKeyUp());
     }
 
     public execute() {
@@ -66,8 +66,8 @@ class Driving implements Behavior {
     }
 
     private crashed(): void {
-        window.removeEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e));
-        window.removeEventListener("keyup", () => this.onKeyUp());
+        window.removeEventListener('keydown', (e: KeyboardEvent) => this.onKeyDown(e));
+        window.removeEventListener('keyup', () => this.onKeyUp());
         this.player.behavior = new Crashed(this.player);
     }
 

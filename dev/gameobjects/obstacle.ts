@@ -1,35 +1,47 @@
 ///<reference path="gameobject.ts"/>
 
 class Obstacle extends GameObject implements Observer {
-    private car: Car;
 
     // Properties
     private static obstacleY: number = 0;
     private speed!: number;
 
-    constructor(parent: HTMLElement, p: Player) {
-        super("obstacle", parent, Utils.Numbers.getRandomInt(1000, 1200), Obstacle.obstacleY, 201, 100);
-        this.car = new Car(this.div, 10, 0, 201, 100);
+    constructor(parent: HTMLElement) {
+        super('obstacle', parent, Utils.Numbers.getRandomInt(1500, 2000), Obstacle.obstacleY, 100, 201);
 
-        this.setObstacle();
-        this.setSpeed(Utils.Numbers.getRandomInt(-1, -8));
+        this.setObstacle(Utils.Numbers.getRandomInt(-1, 3));
+        this.setSpeed(Utils.Numbers.getRandomInt(-4, -10));
 
         this.draw();
 
-        // After constructing one obstacle, add the Y position with 125px so obstacles have other heights
-        Obstacle.obstacleY = Obstacle.obstacleY + 125;
+        // Obstacle.obstacleY = Utils.Numbers.getRandomInt(0, 400) + 100;
+        Obstacle.obstacleY = Obstacle.obstacleY + 120;
     }
 
     // Methods
-    public setObstacle(): void {
-        this.div.classList.add("blue-driver");
+    public setObstacle(num: number): void {
+        switch (num) {
+            case 0:
+                this.div.classList.add('blue-driver');
+                break;
+            case 1:
+                this.div.classList.add('green-driver');
+                break;
+            case 2:
+                this.div.classList.add('yellow-driver');
+                break;
+            default:
+                this.div.classList.add('blue-driver');
+                break;
+        }
     }
 
     public move(): void {
         // If Obstacle is moving out of screen. Place it on the right side somewhere between 800,1000, Also give it a random speed. Else just keep driving
-        if (this.getX() < -200) {
-            this.setX(Utils.Numbers.getRandomInt(800, 1000));
-            this.setSpeed(Utils.Numbers.getRandomInt(-1, -6));
+        if (this.getX() < -201) {
+            this.setX(Utils.Numbers.getRandomInt(1500, 3000));
+            this.setSpeed(Utils.Numbers.getRandomInt(-3, -8));
+            this.setObstacle(Utils.Numbers.getRandomInt(0, 2));
         } else {
             this._x += this.speed;
             this.draw();

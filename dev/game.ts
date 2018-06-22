@@ -17,17 +17,17 @@ class Game {
 
     // Game instance
     private constructor() {
-        this.container = document.querySelector("#container");
+        this.container = document.querySelector('#container');
 
         this.player = new Player(this.container);
-        this.obstacles = new Array();
+        this.obstacles = Array();
 
         this.player.score = 0;
 
         // Create obstacles array.
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 5; i++) {
             // Create Obstacle and push it to the array
-            let obstacle = new Obstacle(this.container, this.player);
+            let obstacle = new Obstacle(this.container);
             this.obstacles.push(obstacle);
 
             // Subscribe to player
@@ -45,28 +45,31 @@ class Game {
         if (!this.gameOver) {
             // For every obstacle. Check the collision
             for (let obstacle of this.obstacles) {
-                if (Utils.Game.checkCollision(this.player, obstacle)) {
+                if (Utils.Game.checkCollision(obstacle, this.player)) {
+                    console.log(Utils.Game.checkCollision(obstacle, this.player));
+                    this.player.setCrash();
                     this.endGame();
                 } else {
-                    // If there is no collision just move all obstacles and add score to player
+                    // If there is no collision move all obstacles and add score to player
                     obstacle.move();
                     this.player.score = this.player.score + 1;
 
                     // Display Score
-                    let scoreText: string = "Score: " + this.player.score;
-                    let board = document.getElementsByTagName("score")[0];
+                    let scoreText: string = 'Score: ' + this.player.score;
+                    let board = document.getElementsByTagName('score')[0];
                     board.innerHTML = scoreText;
                 }
             }
         } else {
-            let start = document.createElement("start");
-            let scoreText: string = "Final Score: " + this.player.score;
+            let container = document.querySelector('#container');
+            let start = document.createElement('start');
+            let scoreText: string = 'Final Score: ' + this.player.score;
             start.innerText = scoreText;
             document.body.appendChild(start);
 
-            // setTimeout(function () {
-            //     this.container.remove();
-            // }, 2000);
+            setTimeout(function () {
+                container!.remove();
+            }, 1500);
         }
         requestAnimationFrame(() => this.gameLoop());
     }
@@ -80,17 +83,16 @@ class Game {
     }
 }
 
-window.addEventListener("load", function () {
-
-    let startText: string = "Highway Racer";
-    let board = document.getElementsByTagName("score")[0];
+window.addEventListener('load', function () {
+    let startText: string = 'Highway Racer';
+    let board = document.getElementsByTagName('score')[0];
     board.innerHTML = startText;
 
-    let start = document.createElement("start");
-    start.innerText = "Start Game";
+    let start = document.createElement('start');
+    start.innerText = 'Start Game';
     document.body.appendChild(start);
 
-    start.addEventListener("click", function () {
+    start.addEventListener('click', function () {
         start.remove();
         Game.getInstance();
     });

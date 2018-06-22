@@ -7,14 +7,6 @@ namespace Utils {
                 instance1.getY() < instance2.getY() + instance2.getHeight() &&
                 instance1.getHeight() + instance1.getY() > instance2.getY())
         }
-
-        public static removeFromGame(go: GameObject, arr: Array<any>) {
-            go.removeDiv();
-            let i: number = arr.indexOf(go);
-            if (i != -1) {
-                arr.splice(i, 1);
-            }
-        }
     }
 
     export class Numbers {
