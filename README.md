@@ -19,10 +19,10 @@ public static getInstance() {
 ```
 It is called by the following code:
 ```
-    start.addEventListener('click', function () {
-        start.remove();
-        Game.getInstance();
-    });
+start.addEventListener('click', function () {
+    start.remove();
+    Game.getInstance();
+});
 ```
 ## Polymorphism
 
