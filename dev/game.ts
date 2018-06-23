@@ -47,7 +47,6 @@ class Game {
             for (let obstacle of this.obstacles) {
                 if (Utils.Game.checkCollision(obstacle, this.player)) {
                     console.log(Utils.Game.checkCollision(obstacle, this.player));
-                    this.player.setCrash();
                     this.endGame();
                 } else {
                     // If there is no collision move all obstacles and add score to player

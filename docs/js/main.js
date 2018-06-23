@@ -38,7 +38,6 @@ var Game = (function () {
                 var obstacle = _a[_i];
                 if (Utils.Game.checkCollision(obstacle, this.player)) {
                     console.log(Utils.Game.checkCollision(obstacle, this.player));
-                    this.player.setCrash();
                     this.endGame();
                 }
                 else {
@@ -111,6 +110,7 @@ var Utils;
 var Crashed = (function () {
     function Crashed(p) {
         this.player = p;
+        this.player.setCrash();
     }
     Crashed.prototype.execute = function () {
     };
@@ -218,13 +218,6 @@ var GameObject = (function () {
     };
     return GameObject;
 }());
-var Car = (function (_super) {
-    __extends(Car, _super);
-    function Car(parent, x, y, width, height) {
-        return _super.call(this, "car", parent, x, y, width, height) || this;
-    }
-    return Car;
-}(GameObject));
 var Obstacle = (function (_super) {
     __extends(Obstacle, _super);
     function Obstacle(parent) {

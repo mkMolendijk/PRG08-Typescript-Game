@@ -5,6 +5,8 @@ class Crashed implements Behavior {
 
     constructor(p: Player) {
         this.player = p;
+
+        this.player.setCrash();
     }
 
     public execute() {
