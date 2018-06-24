@@ -11,7 +11,6 @@ Open the index.html file in your browser.
 [Github pages game link](https://mkmolendijk.github.io/PRG08-Typescript-Game/)
 
 ## UML Class diagram
-![image](Highway-Racer_uml.jpg)
 
 ## Pull requests
 Week 4: [Pull request](https://github.com/ClikeX/typescript_game/pull/2)
