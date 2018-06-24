@@ -46,7 +46,6 @@ class Game {
             // For every obstacle. Check the collision
             for (let obstacle of this.obstacles) {
                 if (Utils.Game.checkCollision(obstacle, this.player)) {
-                    console.log(Utils.Game.checkCollision(obstacle, this.player));
                     this.endGame();
                 } else {
                     // If there is no collision move all obstacles and add score to player
@@ -55,26 +54,45 @@ class Game {
 
                     // Display Score
                     let scoreText: string = 'Score: ' + this.player.score;
-                    let board = document.getElementsByTagName('score')[0];
-                    board.innerHTML = scoreText;
+                    let scoreBoard = document.getElementsByTagName('score')[0];
+                    scoreBoard.innerHTML = scoreText;
                 }
             }
-        } else {
-            let container = document.querySelector('#container');
-            let start = document.createElement('start');
-            let scoreText: string = 'Final Score: ' + this.player.score;
-            start.innerText = scoreText;
-            document.body.appendChild(start);
-
-            setTimeout(function () {
-                container!.remove();
-            }, 1500);
         }
         requestAnimationFrame(() => this.gameLoop());
     }
 
     private endGame(): void {
         this.gameOver = true;
+
+        let container = document.querySelector('#container');
+        let start = document.createElement('start');
+        let scoreText: string = 'Final Score: ' + this.player.score;
+        start.innerText = scoreText;
+        document.body.appendChild(start);
+
+        let restart = document.createElement('restart');
+        restart.innerText = 'Restart';
+        document.body.appendChild(restart);
+
+        restart.addEventListener('click', function () {
+            restart.remove();
+            start.remove();
+            Game.getInstance().restartGame();
+        });
+
+        setTimeout(function () {
+            container!.remove();
+        }, 1500);
+    }
+
+    private restartGame(): void {
+        this.setGameStatus(false);
+        window.location.reload();
+    }
+
+    public setGameStatus(s: boolean) {
+        this.gameOver = s;
     }
 
     public getGameStatus(): boolean {
@@ -84,8 +102,8 @@ class Game {
 
 window.addEventListener('load', function () {
     let startText: string = 'Highway Racer';
-    let board = document.getElementsByTagName('score')[0];
-    board.innerHTML = startText;
+    let scoreBoard = document.getElementsByTagName('score')[0];
+    scoreBoard.innerHTML = startText;
 
     let start = document.createElement('start');
     start.innerText = 'Start Game';

@@ -37,32 +37,46 @@ var Game = (function () {
             for (var _i = 0, _a = this.obstacles; _i < _a.length; _i++) {
                 var obstacle = _a[_i];
                 if (Utils.Game.checkCollision(obstacle, this.player)) {
-                    console.log(Utils.Game.checkCollision(obstacle, this.player));
                     this.endGame();
                 }
                 else {
                     obstacle.move();
                     this.player.score = this.player.score + 1;
                     var scoreText = 'Score: ' + this.player.score;
-                    var board = document.getElementsByTagName('score')[0];
-                    board.innerHTML = scoreText;
+                    var scoreBoard = document.getElementsByTagName('score')[0];
+                    scoreBoard.innerHTML = scoreText;
                 }
             }
         }
         else {
-            var container_1 = document.querySelector('#container');
-            var start = document.createElement('start');
-            var scoreText = 'Final Score: ' + this.player.score;
-            start.innerText = scoreText;
-            document.body.appendChild(start);
-            setTimeout(function () {
-                container_1.remove();
-            }, 1500);
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.endGame = function () {
         this.gameOver = true;
+        var container = document.querySelector('#container');
+        var start = document.createElement('start');
+        var scoreText = 'Final Score: ' + this.player.score;
+        start.innerText = scoreText;
+        document.body.appendChild(start);
+        var restart = document.createElement('restart');
+        restart.innerText = 'Restart';
+        document.body.appendChild(restart);
+        restart.addEventListener('click', function () {
+            restart.remove();
+            start.remove();
+            Game.getInstance().restartGame();
+        });
+        setTimeout(function () {
+            container.remove();
+        }, 1500);
+    };
+    Game.prototype.restartGame = function () {
+        this.setGameStatus(false);
+        window.location.reload();
+    };
+    Game.prototype.setGameStatus = function (s) {
+        this.gameOver = s;
     };
     Game.prototype.getGameStatus = function () {
         return this.gameOver;
@@ -71,8 +85,8 @@ var Game = (function () {
 }());
 window.addEventListener('load', function () {
     var startText = 'Highway Racer';
-    var board = document.getElementsByTagName('score')[0];
-    board.innerHTML = startText;
+    var scoreBoard = document.getElementsByTagName('score')[0];
+    scoreBoard.innerHTML = startText;
     var start = document.createElement('start');
     start.innerText = 'Start Game';
     document.body.appendChild(start);

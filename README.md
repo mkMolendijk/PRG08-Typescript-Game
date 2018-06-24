@@ -1,5 +1,8 @@
 # PRG08-Typescript-Game
 
+## Game description
+In this game you are racing on the highway. Avoid as many cars as you can. One mistake means game over and you need to restart.
+
 ## Installation
 To play the game locally, simply fork and download this repository and compile the code.
 Open the index.html file in your browser.
