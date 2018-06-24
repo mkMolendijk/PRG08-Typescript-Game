@@ -10,7 +10,7 @@ Open the index.html file in your browser.
 ## Github Pages link
 [Github pages game link](https://mkmolendijk.github.io/PRG08-Typescript-Game/)
 
-## Class diagram
+## UML Class diagram
 ![image](Highway-Racer_uml.jpg)
 
 ## Pull requests
